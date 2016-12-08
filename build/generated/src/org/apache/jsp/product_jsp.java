@@ -114,9 +114,10 @@ public final class product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>\n");
       out.write("\t<!--content-->\n");
       out.write("\t\t<div class=\"product\">\n");
-      out.write("                    <h2> Danh sách các sản phẩm</h2>\n");
-      out.write("\t\t\t<div class=\"container\">\n");
+      out.write("                    \n");
+      out.write("\t\t\t<div class=\"container\">                           \n");
       out.write("\t\t\t<div class=\"col-md-12\">\n");
+      out.write("                            <h2> Danh sách các sản phẩm</h2>\n");
       out.write("\t\t\t<div class=\"mid-popular\">\n");
       out.write("                            ");
 
@@ -140,7 +141,9 @@ public final class product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <div class=\"women\">\n");
       out.write("                                        <div class=\"women-top\">\n");
       out.write("                                                <span>Danh mục cha</span>\n");
-      out.write("                                                <h6><a href=\"single.html\"> ");
+      out.write("                                                <h6><a href=\"single.jsp?product=");
+      out.print(p.getProductID());
+      out.write("\"> ");
       out.print(p.getProductName());
       out.write(" </a></h6>\n");
       out.write("                                                </div>\n");
@@ -150,7 +153,9 @@ public final class product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                <div class=\"clearfix\"></div>\n");
       out.write("                                                </div>\n");
       out.write("                                                <div class=\"mid-2\">\n");
-      out.write("                                                        <p ><label>$100.00</label><em class=\"item_price\">Giá</em></p>\n");
+      out.write("                                                        <p ><label>");
+      out.print(p.getProductPrice());
+      out.write("</label> <span class=\"in-dollar\">VNĐ</span> </p>\n");
       out.write("                                                          <div class=\"block\">\n");
       out.write("                                                                <div class=\"starbox small ghosting\"> </div>\n");
       out.write("                                                        </div>\n");

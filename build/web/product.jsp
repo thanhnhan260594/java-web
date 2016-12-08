@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="women">
                                         <div class="women-top">
                                                 <span>Danh mục cha</span>
-                                                <h6><a href="single.html"> <%=p.getProductName()%> </a></h6>
+                                                <h6><a href="single.jsp?product=<%=p.getProductID()%>"> <%=p.getProductName()%> </a></h6>
                                                 </div>
                                                 <div class="img item_add">
                                                         <a href="#"><img src="images/ca.png" alt=""></a>
@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <div class="clearfix"></div>
                                                 </div>
                                                 <div class="mid-2">
-                                                        <p ><label>$100.00</label><em class="item_price">Giá</em></p>
+                                                        <p ><%=p.getProductPrice()%> VNĐ</p>
                                                           <div class="block">
                                                                 <div class="starbox small ghosting"> </div>
                                                         </div>
