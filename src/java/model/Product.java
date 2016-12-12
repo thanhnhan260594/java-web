@@ -1,6 +1,7 @@
 package model;
 
 public class Product {
+
     private int ProductID;
     private String ProductName;
     private Double ProductPrice;
@@ -10,7 +11,9 @@ public class Product {
     private int SupplieID;
     private int CategoryID;
 
-    public Product() { } 
+    public Product() {
+    }
+
     public Product(int ProductID, String ProductName, Double ProductPrice, String ProductImage, String ProductDescription, String ProductSlug) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
@@ -83,5 +86,5 @@ public class Product {
     public void setCategoryID(int CategoryID) {
         this.CategoryID = CategoryID;
     }
-    
+
 }

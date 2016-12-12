@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import model.Category;
 
 public class CategoryDAO {
+
     public ArrayList<Category> getListCategory(int id) throws SQLException {
         Connection connection = DBConnect.getConnecttion();
         String sql = "SELECT * FROM categories Where id_par_cate =" + id;
@@ -16,18 +17,18 @@ public class CategoryDAO {
         ResultSet rs = ps.executeQuery();
         ArrayList<Category> list = new ArrayList<>();
         while (rs.next()) {
-        Category category = new Category();
-        category.setCategoryID(rs.getInt("id_cate"));
-        category.setCategoryName(rs.getString("name_cate"));
-        category.setCategorySlug(rs.getString("slug_cate"));
-        list.add(category);
+            Category category = new Category();
+            category.setCategoryID(rs.getInt("id_cate"));
+            category.setCategoryName(rs.getString("name_cate"));
+            category.setCategorySlug(rs.getString("slug_cate"));
+            list.add(category);
         }
         return list;
-       }
+    }
+
     public static void main(String[] args) throws SQLException {
         CategoryDAO dao = new CategoryDAO();
-        for (Category ds : dao.getListCategory(1)) 
-        {
+        for (Category ds : dao.getListCategory(1)) {
             System.out.println(ds.getCategoryName() + " - " + ds.getCategorySlug());
         }
     }
