@@ -1,5 +1,7 @@
 <%@page import="model.Category"%> 
 <%@page import="dao.CategoryDAO"%>
+<%@page import="model.User"%>
+<%@page import="dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +10,13 @@
     </head>
     <body>
         <% CategoryDAO categoryDAO = new CategoryDAO(); %>
-
+        <%
+            User user = new User();
+            if (session.getAttribute("user") != null)
+            user = (User) session.getAttribute("user");
+            else
+            user.setUserEmail("");
+        %>
         <div class="header">
             <div class="container">
                 <div class="head">
@@ -29,6 +37,7 @@
 
                     <div class="col-sm-5 header-social">		
                         <ul >
+                            <li><a href="#"> Xin chào <%=user.getUserEmail()%></a> </li>
                             <li><a href="#"><i></i></a></li>
                             <li><a href="#"><i class="ic1"></i></a></li>
                             <li><a href="#"><i class="ic2"></i></a></li>
@@ -74,7 +83,7 @@
                                                             <%
                                                                 for (Category c : categoryDAO.getListCategory(2)) {
                                                             %>
-                                                            <li><a href="product.jsp?category=<%=c.getCategorySlug()%>"><%=c.getCategoryName()%></a></li>        
+                                                            <li><a href="product.jsp?category=<%=c.getCategoryID()%>"><%=c.getCategoryName()%></a></li>        
                                                                 <%
                                                                     }
                                                                 %>
@@ -104,7 +113,7 @@
                                                             <%
                                                                 for (Category c : categoryDAO.getListCategory(3)) {
                                                             %>
-                                                            <li><a href="product.jsp?category=<%=c.getCategorySlug()%>"><%=c.getCategoryName()%></a></li>        
+                                                            <li><a href="product.jsp?category=<%=c.getCategoryID()%>"><%=c.getCategoryName()%></a></li>        
                                                                 <%
                                                                     }
                                                                 %>

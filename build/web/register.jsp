@@ -42,6 +42,27 @@
                 });
             });
         </script>
+
+        <!--Ajax google-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var x_timer;
+                $("#email").keyup(function (e) {
+                    clearTimeout(x_timer);
+                    var user_name = $(this).val();
+                    x_timer = setTimeout(function () {
+                        check_username_ajax(user_name);
+                    }, 1000);
+                });
+                function check_username_ajax(email) {
+                    $("#user-result").html('<img src="images/ajax-loader.gif" />');
+                    $.post('CheckEmailServlet', {'email': email}, function (data) {
+                        $("#email-result").html(data);
+                    });
+                }
+            });
+        </script>
         <!---//End-rate---->
     </head>
     <body>
@@ -58,40 +79,40 @@
             <!--login-->
             <div class="container">
                 <div class="login">
-                    <form>
+                    <div class="col-md-3"></div>
+                    <form action="UserServlet" method="POST">
                         <div class="col-md-6 login-do">
-                            <div class="login-mail">
-                                <input type="text" placeholder="Name" required="">
+                            <p>Tên tài khoản:</p>
+                            <div class="login-mail">                                
+                                <input type="text" name="username" placeholder="" required="yes">
                                 <i  class="glyphicon glyphicon-user"></i>
                             </div>
+
+                            <p>Email: <span id="email-result"></span></p>
                             <div class="login-mail">
-                                <input type="text" placeholder="Phone Number" required="">
-                                <i  class="glyphicon glyphicon-phone"></i>
-                            </div>
-                            <div class="login-mail">
-                                <input type="text" placeholder="Email" required="">
+                                <input type="text" name="email" id="email" placeholder="exam@exam.com" required="yes">
                                 <i  class="glyphicon glyphicon-envelope"></i>
                             </div>
+
+                            <p>Mật khẩu:</p>
                             <div class="login-mail">
-                                <input type="password" placeholder="Password" required="">
+                                <input type="password" name="password" placeholder="**********" required="yes">
                                 <i class="glyphicon glyphicon-lock"></i>
                             </div>
-                            <a class="news-letter " href="#">
-                                <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forget Password</label>
-                            </a>
-                            <label class="hvr-skew-backward">
-                                <input type="submit" value="Submit">
+
+                            <p>Nhập lại mật khẩu:</p>
+                            <div class="login-mail">                               
+                                <input type="password" name="repassword" placeholder="*********" required="yes">
+                                <i class="glyphicon glyphicon-lock"></i>
+                            </div>
+
+                            <label class="hvr-skew-backward" >
+                                <input type="hidden" value="insert" name="command">
+                                <input type="submit" value="Đăng ký">
                             </label>
 
                         </div>
-                        <div class="col-md-6 login-right">
-                            <h3>Completely Free Account</h3>
 
-                            <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
-                                libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-                            <a href="login.html" class="hvr-skew-backward">Login</a>
-
-                        </div>
 
                         <div class="clearfix"> </div>
                     </form>

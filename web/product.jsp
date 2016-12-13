@@ -72,7 +72,7 @@
                         <h2> Danh sách các sản phẩm</h2>
                         <div class="mid-popular">
                         <%
-                            for (Product p : productDAO.getListProductByCategory(Integer.parseInt(cate_id))) {
+                            for (Product p : productDAO.getListProductByCategory(Long.parseLong(cate_id))){
                         %>
                         <div class="col-md-4 item-grid1 simpleCart_shelfItem">
                             <div class=" mid-pop">

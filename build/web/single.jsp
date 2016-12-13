@@ -54,7 +54,7 @@
             String productID = "";
             if (request.getParameter("product") != null) {
                 productID = request.getParameter("product");
-                product = productDAO.getProduct(Integer.parseInt(productID));
+                product = productDAO.getProduct(Long.parseLong(productID));
             }
         %>
         <!--header-->

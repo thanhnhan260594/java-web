@@ -28,7 +28,7 @@ public class CategoryDAO {
 
     public static void main(String[] args) throws SQLException {
         CategoryDAO dao = new CategoryDAO();
-        for (Category ds : dao.getListCategory(1)) {
+        for (Category ds : dao.getListCategory(2)) {
             System.out.println(ds.getCategoryName() + " - " + ds.getCategorySlug());
         }
     }
