@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="model.Item"%>
+<%@page import="model.Cart"%>
 <%@page import="model.Category"%> 
 <%@page import="dao.CategoryDAO"%>
 <%@page import="model.User"%>
@@ -12,10 +15,18 @@
         <% CategoryDAO categoryDAO = new CategoryDAO(); %>
         <%
             User user = new User();
-            if (session.getAttribute("user") != null)
-            user = (User) session.getAttribute("user");
-            else
-            user.setUserEmail("");
+            if (session.getAttribute("user") != null) {
+                user = (User) session.getAttribute("user");
+            } else {
+                user.setUserEmail("");
+            }
+        %>
+        <%
+            Cart cart = (Cart) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new Cart();
+                session.setAttribute("cart", cart);
+            }
         %>
         <div class="header">
             <div class="container">
@@ -37,7 +48,7 @@
 
                     <div class="col-sm-5 header-social">		
                         <ul >
-                            <li><a href="#"> Xin chào <%=user.getUserEmail()%></a> </li>
+                            <li><a href="#"><%=user.getUserEmail()%></a> </li>
                             <li><a href="#"><i></i></a></li>
                             <li><a href="#"><i class="ic1"></i></a></li>
                             <li><a href="#"><i class="ic2"></i></a></li>
@@ -135,63 +146,64 @@
 
                         </nav>
                     </div>
-                    <div class="col-sm-2 search-right">
-                        <ul class="heart">
-                            <li>
-                                <a href="wishlist.html" >
-                                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                                </a></li>
+                    <div class="col-sSm-2 search-right">
+
+                        <div class="cart box_1">
+                            <a href="cart.jsp">
+                                <h3>
+                                    <div class="total center-block">
+                                        <img src="images/cart.png" alt=""/>
+                                        <span><%=cart.countItem()%></span>
+                                    </div>
+
+                                </h3>
+                                <h3>
+                                    <div class="total"><%=cart.total()%>VNĐ</div>
+                                </h3>    
+                            </a>
+
+
+                            <!----->
+
+                            <!---pop-up-box---->					  
+                            <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+                            <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+                            <!---//pop-up-box---->
+                            <div id="small-dialog" class="mfp-hide">
+                                <div class="search-top">
+                                    <div class="login-search">
+                                        <input type="submit" value="">
+                                        <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                    this.value = 'Search..';
+                                                }">		
+                                    </div>
+                                    <p>Tìm kiếm</p>
+                                </div>				
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.popup-with-zoom-anim').magnificPopup({
+                                        type: 'inline',
+                                        fixedContentPos: false,
+                                        fixedBgPos: true,
+                                        overflowY: 'auto',
+                                        closeBtnInside: true,
+                                        preloader: false,
+                                        midClick: true,
+                                        removalDelay: 300,
+                                        mainClass: 'my-mfp-zoom-in'
+                                    });
+
+                                });
+                            </script>		
+                            <!----->
+                        </div>
+                        <ul class="heart">                         
                             <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i></a></li>
                         </ul>
-                        <div class="cart box_1">
-                            <a href="checkout.html">
-                                <h3> <div class="total">
-                                        <span class="simpleCart_total"></span></div>
-                                    <img src="images/cart.png" alt=""/></h3>
-                            </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Giỏ hàng</a></p>
-
-                        </div>
-                        <div class="clearfix"> </div>
-
-                        <!----->
-
-                        <!---pop-up-box---->					  
-                        <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-                        <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-                        <!---//pop-up-box---->
-                        <div id="small-dialog" class="mfp-hide">
-                            <div class="search-top">
-                                <div class="login-search">
-                                    <input type="submit" value="">
-                                    <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                            this.value = 'Search..';
-                                                        }">		
-                                </div>
-                                <p>Tìm kiếm</p>
-                            </div>				
-                        </div>
-                        <script>
-                            $(document).ready(function () {
-                                $('.popup-with-zoom-anim').magnificPopup({
-                                    type: 'inline',
-                                    fixedContentPos: false,
-                                    fixedBgPos: true,
-                                    overflowY: 'auto',
-                                    closeBtnInside: true,
-                                    preloader: false,
-                                    midClick: true,
-                                    removalDelay: 300,
-                                    mainClass: 'my-mfp-zoom-in'
-                                });
-
-                            });
-                        </script>		
-                        <!----->
-                    </div>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                    </div>	
                 </div>	
-            </div>	
-        </div>
+            </div>
     </body>
 </html>

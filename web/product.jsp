@@ -1,3 +1,4 @@
+<%@page import="model.Cart"%>
 <%@page import="model.Product"%> 
 <%@page import="dao.ProductDAO"%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -54,6 +55,12 @@
             if (request.getParameter("category") != null) {
                 cate_id = request.getParameter("category");
             }
+            
+            Cart cart = (Cart) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new Cart();
+                session.setAttribute("cart", cart);
+            }
         %>
         <jsp:include page="_Header.jsp"></jsp:include>
             <!--banner-->
@@ -90,7 +97,7 @@
                                             <h6><a href="single.jsp?product=<%=p.getProductID()%>"> <%=p.getProductName()%> </a></h6>
                                         </div>
                                         <div class="img item_add">
-                                            <a href="#"><img src="images/ca.png" alt=""></a>
+                                            <a href="CartServlet?command=plus&productID=<%=p.getProductID()%>"><img src="images/ca.png" alt=""></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

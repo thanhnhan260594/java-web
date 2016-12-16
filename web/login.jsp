@@ -61,7 +61,7 @@
 
                     <form action="UserServlet" method="POST">
                         <div class="col-md-6 login-do">
-                        <%if (session.getAttribute("error") != null) {%> <div> <p style="color:red"><%=session.getAttribute("error")%></p> </div> <%}%>
+                        <%if (session.getAttribute("error") != null) {%> <div class="alert alert-danger" role="alert"><p><%=session.getAttribute("error")%></p> </div> <%}%>
                         <div class="login-mail">
                             <input type="text" placeholder="Email" required="" name="email" >
                             <i  class="glyphicon glyphicon-envelope"></i>
