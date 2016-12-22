@@ -137,9 +137,7 @@
                                                 <!--brand-->
                                             <jsp:include page="_Branch-img.jsp"></jsp:include>
                                                 <!--//brand-->
-                                                </div>
-
-                                                </div>
+                                                
                                                 <!--//content-->
                                                 <!--//footer-->
                                             <jsp:include page="_Footer.jsp"></jsp:include>

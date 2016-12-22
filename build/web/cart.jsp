@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Thanh toán</title>
+        <title>Giỏ Hàng</title>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Custom Theme files -->
         <!--theme-style-->
@@ -85,7 +85,6 @@
                             <table class="table-heading simpleCart_shelfItem">
                                 <tr>
                                     <th class="table-grid">Sản Phẩm</th>
-
                                     <th>Giá</th>
                                     <th >Số Lượng </th>
                                     
@@ -121,7 +120,7 @@
                     </div>
                 </div>
                 <div class="produced">
-                    <a href="single.html" class="hvr-skew-backward">Thanh Toán</a>
+                    <a href="checkout.jsp" class="hvr-skew-backward">Thanh Toán</a>
                 </div>
             </div>
         </div>

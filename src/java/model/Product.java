@@ -2,92 +2,92 @@ package model;
 
 public class Product {
 
-    private long ProductID;
-    private String ProductName;
-    private Double ProductPrice;
-    private String ProductSlug;
-    private String ProductImage;
-    private String ProductDescription;
-    private long SupplieID;
-    private long CategoryID;
+    private long productID;
+    private String productName;
+    private Double productPrice;
+    private String productSlug;
+    private String productImage;
+    private String productDescription;
+    private long supplyID;
+    private long categoryID;
 
     public Product() {
     }
 
-    public Product(long ProductID, String ProductName, Double ProductPrice, String ProductSlug, String ProductImage, String ProductDescription) {
-        this.ProductID = ProductID;
-        this.ProductName = ProductName;
-        this.ProductPrice = ProductPrice;
-        this.ProductSlug = ProductSlug;
-        this.ProductImage = ProductImage;
-        this.ProductDescription = ProductDescription;
+    public Product(long productID, String productName, Double productPrice, String productSlug, String productImage, String productDescription, long supplyID, long categoryID) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productSlug = productSlug;
+        this.productImage = productImage;
+        this.productDescription = productDescription;
+        this.supplyID = supplyID;
+        this.categoryID = categoryID;
     }
 
     public long getProductID() {
-        return ProductID;
+        return productID;
+    }
+
+    public void setProductID(long productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Double getProductPrice() {
-        return ProductPrice;
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
     }
 
     public String getProductSlug() {
-        return ProductSlug;
+        return productSlug;
+    }
+
+    public void setProductSlug(String productSlug) {
+        this.productSlug = productSlug;
     }
 
     public String getProductImage() {
-        return ProductImage;
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     public String getProductDescription() {
-        return ProductDescription;
+        return productDescription;
     }
 
-    public long getSupplieID() {
-        return SupplieID;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public long getSupplyID() {
+        return supplyID;
+    }
+
+    public void setSupplyID(long supplyID) {
+        this.supplyID = supplyID;
     }
 
     public long getCategoryID() {
-        return CategoryID;
+        return categoryID;
     }
 
-    public void setProductID(long ProductID) {
-        this.ProductID = ProductID;
+    public void setCategoryID(long categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
-    }
-
-    public void setProductPrice(Double ProductPrice) {
-        this.ProductPrice = ProductPrice;
-    }
-
-    public void setProductSlug(String ProductSlug) {
-        this.ProductSlug = ProductSlug;
-    }
-
-    public void setProductImage(String ProductImage) {
-        this.ProductImage = ProductImage;
-    }
-
-    public void setProductDescription(String ProductDescription) {
-        this.ProductDescription = ProductDescription;
-    }
-
-    public void setSupplieID(long SupplieID) {
-        this.SupplieID = SupplieID;
-    }
-
-    public void setCategoryID(long CategoryID) {
-        this.CategoryID = CategoryID;
-    }
-    
-
-  
-
+   
 }

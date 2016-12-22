@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.Cart"%>
 <%@page import="model.Product"%> 
 <%@page import="dao.ProductDAO"%> 
@@ -51,16 +52,31 @@
         <!--header-->
         <%
             ProductDAO productDAO = new ProductDAO();
-            String cate_id = "";
-            if (request.getParameter("category") != null) {
-                cate_id = request.getParameter("category");
+            long categoryID = 0;
+            if (request.getParameter("categoryID") != null) {
+                categoryID = (long) Long.parseLong(request.getParameter("categoryID"));
             }
-            
+
             Cart cart = (Cart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new Cart();
                 session.setAttribute("cart", cart);
             }
+            int pages = 0, firstResult = 0, maxResult = 0, total = 0;
+            if (request.getParameter("pages") != null) {
+                pages = (int) Integer.parseInt(request.getParameter("pages"));
+            }
+            total = productDAO.countProductByCategory(categoryID);
+            if (total <= 4) {
+                firstResult = 1;
+                maxResult = total;
+            } else {
+                firstResult = (pages - 1) * 4;
+                maxResult = 4;
+            }
+            ArrayList<Product> listProduct = productDAO.getListProductByPagesCategory(
+                    categoryID, firstResult, maxResult);
+
         %>
         <jsp:include page="_Header.jsp"></jsp:include>
             <!--banner-->
@@ -68,7 +84,7 @@
                 <div class="container">
                     <h1>Products</h1>
                     <em></em>
-                    <h2><a href="index.html">Home</a><label>/</label>Products</a></h2>
+                    <h2><a href="index.html">Trang chủ</a><label>/</label>Sản Phẩm</h2>
                 </div>
             </div>
             <!--content-->
@@ -78,16 +94,15 @@
                     <div class="col-md-12">
                         <h2> Danh sách các sản phẩm</h2>
                         <div class="mid-popular">
-                        <%
-                            for (Product p : productDAO.getListProductByCategory(Long.parseLong(cate_id))){
+                        <%                            for (Product p : listProduct) {
                         %>
-                        <div class="col-md-4 item-grid1 simpleCart_shelfItem">
+                        <div class="col-md-3 item-grid1 simpleCart_shelfItem">
                             <div class=" mid-pop">
                                 <div class="pro-img">
                                     <img src="images/<%=p.getProductImage()%>" class="img-responsive" alt="">
                                     <div class="zoom-icon ">
                                         <a class="picture" href="images/<%=p.getProductImage()%>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                                        <a href="single.html"><i class="glyphicon glyphicon-menu-right icon"></i></a>
+                                        <a href="single.jsp?product=<%=p.getProductID()%>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
                                     </div>
                                 </div>
                                 <div class="mid-1">
@@ -120,7 +135,14 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-
+                <ul class="grid2">
+                    <h2>
+                    
+                        <% for (int i = 1; i <= (total / 4 + 1); i++) {%>
+                    <li class="label label-info"><a href="product.jsp?categoryID=<%=categoryID%>&pages=<%=i%>"><%=i%></a></li>
+                        <%}%>
+                    </h2>
+                </ul>
                 <div class="clearfix"></div>
                 <!--products-->			
                 <!--//products-->

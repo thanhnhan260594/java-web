@@ -3,50 +3,52 @@ package model;
 
 public class User {
 
-    private long UserID;
-    private String UserName;
-    private String UserPass;
-    private String UserEmail;
+    private long userID;
+    private String userName;
+    private String userPass;
+    private String userEmail;
 
     public User() {
     }
 
-    public User(long UserID, String UserName, String UserPass, String UserEmail) {
-        this.UserID = UserID;
-        this.UserName = UserName;
-        this.UserPass = UserPass;
-        this.UserEmail = UserEmail;
+    public User(long userID, String userName, String userPass, String userEmail) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userPass = userPass;
+        this.userEmail = userEmail;
     }
 
     public long getUserID() {
-        return UserID;
+        return userID;
+    }
+
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
-        return UserName;
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserPass() {
-        return UserPass;
+        return userPass;
+    }
+
+    public void setUserPass(String userPass) {
+        this.userPass = userPass;
     }
 
     public String getUserEmail() {
-        return UserEmail;
+        return userEmail;
     }
 
-    public void setUserID(long UserID) {
-        this.UserID = UserID;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
-    }
-
-    public void setUserPass(String UserPass) {
-        this.UserPass = UserPass;
-    }
-
-    public void setUserEmail(String UserEmail) {
-        this.UserEmail = UserEmail;
-    }
+   
 }

@@ -11,9 +11,64 @@ import model.Product;
 
 public class ProductDAO {
 
-    public ArrayList<Product> getListProductByCategory(long cate_id) throws SQLException {
+//    public ArrayList<Product> getListProductByCategory(long cate_id) throws SQLException {
+//        Connection connection = DBConnect.getConnecttion();
+//        String sql = "SELECT * FROM products WHERE id_cate = " + cate_id;
+//        PreparedStatement ps = connection.prepareCall(sql);
+//        ResultSet rs = ps.executeQuery();
+//
+//        ArrayList<Product> list = new ArrayList<>();
+//        while (rs.next()) {
+//            Product product = new Product();
+//            product.setProductID(rs.getLong("id_product"));
+//            product.setProductName(rs.getString("name_product"));
+//            product.setProductImage(rs.getString("image"));
+//            product.setProductPrice(rs.getDouble("price"));
+//            product.setProductDescription(rs.getString("description"));
+//            product.setProductSlug(rs.getString("slug_product"));
+//            list.add(product);
+//        }
+//        return list;
+//    }
+    
+// lấy danh sách sản phẩm
+    public ArrayList<Product> getListProductByPagesCategory(long cate_id, int firstResult, int maxResult) throws SQLException {
         Connection connection = DBConnect.getConnecttion();
-        String sql = "SELECT * FROM products WHERE id_cate = " + cate_id;
+        String sql = "SELECT * FROM products WHERE id_cate = '" + cate_id + "' limit ?,?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setInt(1, firstResult);
+        ps.setInt(2, maxResult);
+        ResultSet rs = ps.executeQuery();
+        ArrayList<Product> list = new ArrayList<>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProductID(rs.getLong("id_product"));
+            product.setProductName(rs.getString("name_product"));
+            product.setProductImage(rs.getString("image"));
+            product.setProductPrice(rs.getDouble("price"));
+            product.setProductDescription(rs.getString("description"));
+            product.setProductSlug(rs.getString("slug_product"));
+            list.add(product);
+        }
+        return list;
+    }
+// tính tổng sản phẩm
+    public int countProductByCategory(long cate_id) throws SQLException{
+        Connection connection = DBConnect.getConnecttion();
+        String sql = "SELECT count(id_product) FROM products WHERE id_cate = '" + cate_id + "'";
+        PreparedStatement ps = connection.prepareCall(sql);
+       
+        ResultSet rs = ps.executeQuery();
+        int count = 0;
+        while (rs.next()) {
+            count = rs.getInt(1);
+        }
+        return count;
+    }
+            
+    public ArrayList<Product> getListNewProduct() throws SQLException {
+        Connection connection = DBConnect.getConnecttion();
+        String sql = "SELECT * FROM products ORDER BY date_update DESC";
         PreparedStatement ps = connection.prepareCall(sql);
         ResultSet rs = ps.executeQuery();
 
@@ -49,10 +104,9 @@ public class ProductDAO {
 
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
-        for (Product ds : dao.getListProductByCategory(1)) 
-        {
-            System.out.println(ds.getProductName() + " - ");
-        }
-//        System.out.println(dao.getProduct(1).getProductID() + " - " + dao.getProduct(1).getProductName());
+//        for (Product ds : dao.getListNewProduct()) {
+//            System.out.println(ds.getProductImage() + " - ");
+//        }
+        System.out.println(dao.countProductByCategory(1));
     }
 }

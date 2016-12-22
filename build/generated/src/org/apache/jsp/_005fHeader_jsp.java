@@ -3,8 +3,15 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Map;
+import model.Item;
+import model.Cart;
 import model.Category;
 import dao.CategoryDAO;
+import model.User;
+import dao.UserDAO;
+import model.Supply;
+import dao.SupplyDAO;
 
 public final class _005fHeader_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -43,7 +50,14 @@ public final class _005fHeader_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write(" \n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
@@ -55,6 +69,27 @@ public final class _005fHeader_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
  CategoryDAO categoryDAO = new CategoryDAO(); 
       out.write("\n");
+      out.write("        ");
+ SupplyDAO supplyDAO = new SupplyDAO(); 
+      out.write("\n");
+      out.write("        ");
+
+            User user = new User();
+            if (session.getAttribute("user") != null) {
+                user = (User) session.getAttribute("user");
+            } else {
+                user.setUserEmail("");
+            }
+        
+      out.write("\n");
+      out.write("        ");
+
+            Cart cart = (Cart) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new Cart();
+                session.setAttribute("cart", cart);
+            }
+        
       out.write("\n");
       out.write("        <div class=\"header\">\n");
       out.write("            <div class=\"container\">\n");
@@ -76,6 +111,9 @@ public final class _005fHeader_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                    <div class=\"col-sm-5 header-social\">\t\t\n");
       out.write("                        <ul >\n");
+      out.write("                            <li><a href=\"#\">");
+      out.print(user.getUserEmail());
+      out.write("</a> </li>\n");
       out.write("                            <li><a href=\"#\"><i></i></a></li>\n");
       out.write("                            <li><a href=\"#\"><i class=\"ic1\"></i></a></li>\n");
       out.write("                            <li><a href=\"#\"><i class=\"ic2\"></i></a></li>\n");
@@ -191,7 +229,40 @@ public final class _005fHeader_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                            </div>                  \n");
       out.write("                                        </div>\t\t\t\t\n");
       out.write("                                    </li>\t\t\n");
-      out.write("                                    <li><a class=\"color3\" href=\"product.jsp\">Sale</a></li>\n");
+      out.write("                                    <li><a class=\"color3\" href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Thương hiệu</a>\n");
+      out.write("                                        <div class=\"dropdown-menu \">\n");
+      out.write("\n");
+      out.write("                                            <div class=\"col2\">\n");
+      out.write("                                                <div class=\"h_nav\">\n");
+      out.write("                                                    <h4 color:white>. </h4>\n");
+      out.write("                                                    <ul>\n");
+      out.write("                                                        ");
+
+                                                            for (Supply s : supplyDAO.getListSupply()) {
+                                                        
+      out.write("\n");
+      out.write("                                                        <li><a href=\"product.jsp?category=");
+      out.print(s.getSupplyID());
+      out.write('"');
+      out.write('>');
+      out.print(s.getSupplyName());
+      out.write("</a></li>        \n");
+      out.write("                                                            ");
+
+                                                                }
+                                                            
+      out.write("\n");
+      out.write("\n");
+      out.write("                                                    </ul>\t\n");
+      out.write("                                                </div>\t\t\t\t\t\t\t\n");
+      out.write("                                            </div>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                                            <div class=\"clearfix\"></div>\n");
+      out.write("\n");
+      out.write("                                        </div>\t\n");
+      out.write("                                    </li>\n");
       out.write("                                    <li><a class=\"color4\" href=\"404.jsp\">Giới thiệu</a></li>\n");
       out.write("                                    <li><a class=\"color5\" href=\"typo.html\">Tin Tức</a></li>\n");
       out.write("                                    <li ><a class=\"color6\" href=\"contact.jsp\">Liên hệ</a></li>\n");
@@ -200,64 +271,69 @@ public final class _005fHeader_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                        </nav>\n");
       out.write("                    </div>\n");
-      out.write("                    <div class=\"col-sm-2 search-right\">\n");
-      out.write("                        <ul class=\"heart\">\n");
-      out.write("                            <li>\n");
-      out.write("                                <a href=\"wishlist.html\" >\n");
-      out.write("                                    <span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span>\n");
-      out.write("                                </a></li>\n");
+      out.write("                    <div class=\"col-sSm-2 search-right\">\n");
+      out.write("\n");
+      out.write("                        <div class=\"cart box_1\">\n");
+      out.write("                            <a href=\"cart.jsp\">\n");
+      out.write("                                <h3>\n");
+      out.write("                                    <div class=\"total center-block\">\n");
+      out.write("                                        <img src=\"images/cart.png\" alt=\"\"/>\n");
+      out.write("                                        <span>");
+      out.print(cart.countItem());
+      out.write("</span>\n");
+      out.write("                                    </div>\n");
+      out.write("\n");
+      out.write("                                </h3>\n");
+      out.write("                                <h3>\n");
+      out.write("                                    <div class=\"total\">");
+      out.print(cart.total());
+      out.write("VNĐ</div>\n");
+      out.write("                                </h3>    \n");
+      out.write("                            </a>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                            <!----->\n");
+      out.write("\n");
+      out.write("                            <!---pop-up-box---->\t\t\t\t\t  \n");
+      out.write("                            <link href=\"css/popuo-box.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\"/>\n");
+      out.write("                            <script src=\"js/jquery.magnific-popup.js\" type=\"text/javascript\"></script>\n");
+      out.write("                            <!---//pop-up-box---->\n");
+      out.write("                            <div id=\"small-dialog\" class=\"mfp-hide\">\n");
+      out.write("                                <div class=\"search-top\">\n");
+      out.write("                                    <div class=\"login-search\">\n");
+      out.write("                                        <input type=\"submit\" value=\"\">\n");
+      out.write("                                        <input type=\"text\" value=\"Search..\" onfocus=\"this.value = '';\" onblur=\"if (this.value == '') {\n");
+      out.write("                                                    this.value = 'Search..';\n");
+      out.write("                                                }\">\t\t\n");
+      out.write("                                    </div>\n");
+      out.write("                                    <p>Tìm kiếm</p>\n");
+      out.write("                                </div>\t\t\t\t\n");
+      out.write("                            </div>\n");
+      out.write("                            <script>\n");
+      out.write("                                $(document).ready(function () {\n");
+      out.write("                                    $('.popup-with-zoom-anim').magnificPopup({\n");
+      out.write("                                        type: 'inline',\n");
+      out.write("                                        fixedContentPos: false,\n");
+      out.write("                                        fixedBgPos: true,\n");
+      out.write("                                        overflowY: 'auto',\n");
+      out.write("                                        closeBtnInside: true,\n");
+      out.write("                                        preloader: false,\n");
+      out.write("                                        midClick: true,\n");
+      out.write("                                        removalDelay: 300,\n");
+      out.write("                                        mainClass: 'my-mfp-zoom-in'\n");
+      out.write("                                    });\n");
+      out.write("\n");
+      out.write("                                });\n");
+      out.write("                            </script>\t\t\n");
+      out.write("                            <!----->\n");
+      out.write("                        </div>\n");
+      out.write("                        <ul class=\"heart\">                         \n");
       out.write("                            <li><a class=\"play-icon popup-with-zoom-anim\" href=\"#small-dialog\"><i class=\"glyphicon glyphicon-search\"> </i></a></li>\n");
       out.write("                        </ul>\n");
-      out.write("                        <div class=\"cart box_1\">\n");
-      out.write("                            <a href=\"checkout.html\">\n");
-      out.write("                                <h3> <div class=\"total\">\n");
-      out.write("                                        <span class=\"simpleCart_total\"></span></div>\n");
-      out.write("                                    <img src=\"images/cart.png\" alt=\"\"/></h3>\n");
-      out.write("                            </a>\n");
-      out.write("                            <p><a href=\"javascript:;\" class=\"simpleCart_empty\">Giỏ hàng</a></p>\n");
-      out.write("\n");
-      out.write("                        </div>\n");
-      out.write("                        <div class=\"clearfix\"> </div>\n");
-      out.write("\n");
-      out.write("                        <!----->\n");
-      out.write("\n");
-      out.write("                        <!---pop-up-box---->\t\t\t\t\t  \n");
-      out.write("                        <link href=\"css/popuo-box.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\"/>\n");
-      out.write("                        <script src=\"js/jquery.magnific-popup.js\" type=\"text/javascript\"></script>\n");
-      out.write("                        <!---//pop-up-box---->\n");
-      out.write("                        <div id=\"small-dialog\" class=\"mfp-hide\">\n");
-      out.write("                            <div class=\"search-top\">\n");
-      out.write("                                <div class=\"login-search\">\n");
-      out.write("                                    <input type=\"submit\" value=\"\">\n");
-      out.write("                                    <input type=\"text\" value=\"Search..\" onfocus=\"this.value = '';\" onblur=\"if (this.value == '') {\n");
-      out.write("                                                            this.value = 'Search..';\n");
-      out.write("                                                        }\">\t\t\n");
-      out.write("                                </div>\n");
-      out.write("                                <p>Tìm kiếm</p>\n");
-      out.write("                            </div>\t\t\t\t\n");
-      out.write("                        </div>\n");
-      out.write("                        <script>\n");
-      out.write("                            $(document).ready(function () {\n");
-      out.write("                                $('.popup-with-zoom-anim').magnificPopup({\n");
-      out.write("                                    type: 'inline',\n");
-      out.write("                                    fixedContentPos: false,\n");
-      out.write("                                    fixedBgPos: true,\n");
-      out.write("                                    overflowY: 'auto',\n");
-      out.write("                                    closeBtnInside: true,\n");
-      out.write("                                    preloader: false,\n");
-      out.write("                                    midClick: true,\n");
-      out.write("                                    removalDelay: 300,\n");
-      out.write("                                    mainClass: 'my-mfp-zoom-in'\n");
-      out.write("                                });\n");
-      out.write("\n");
-      out.write("                            });\n");
-      out.write("                        </script>\t\t\n");
-      out.write("                        <!----->\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"clearfix\"></div>\n");
+      out.write("                        <div class=\"clearfix\"></div>\n");
+      out.write("                    </div>\t\n");
       out.write("                </div>\t\n");
-      out.write("            </div>\t\n");
-      out.write("        </div>\n");
+      out.write("            </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

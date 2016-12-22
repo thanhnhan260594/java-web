@@ -53,6 +53,7 @@ public class Cart {
         count = cartItems.size();
         return count;
     }
+    
     //sum total
     public double total() {
         int count = 0;

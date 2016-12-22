@@ -5,6 +5,8 @@
 <%@page import="dao.CategoryDAO"%>
 <%@page import="model.User"%>
 <%@page import="dao.UserDAO"%>
+<%@page import="model.Supply"%>
+<%@page import="dao.SupplyDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +15,7 @@
     </head>
     <body>
         <% CategoryDAO categoryDAO = new CategoryDAO(); %>
+        <% SupplyDAO supplyDAO = new SupplyDAO(); %>
         <%
             User user = new User();
             if (session.getAttribute("user") != null) {
@@ -109,7 +112,7 @@
                                                             <%
                                                                 for (Category c : categoryDAO.getListCategory(1)) {
                                                             %>
-                                                            <li><a href="product.jsp?category=<%=c.getCategoryID()%>"><%=c.getCategoryName()%></a></li>        
+                                                            <li><a href="product.jsp?categoryID=<%=c.getCategoryID()%>&pages=1"><%=c.getCategoryName()%></a></li>        
                                                                 <%
                                                                     }
                                                                 %>
@@ -137,7 +140,31 @@
                                             </div>                  
                                         </div>				
                                     </li>		
-                                    <li><a class="color3" href="product.jsp">Sale</a></li>
+                                    <li><a class="color3" href="#" class="dropdown-toggle" data-toggle="dropdown">Thương hiệu</a>
+                                        <div class="dropdown-menu ">
+
+                                            <div class="col2">
+                                                <div class="h_nav">
+                                                    <h4 color:white>. </h4>
+                                                    <ul>
+                                                        <%
+                                                            for (Supply s : supplyDAO.getListSupply()) {
+                                                        %>
+                                                        <li><a href="product.jsp?category=<%=s.getSupplyID()%>"><%=s.getSupplyName()%></a></li>        
+                                                            <%
+                                                                }
+                                                            %>
+
+                                                    </ul>	
+                                                </div>							
+                                            </div>
+
+
+
+                                            <div class="clearfix"></div>
+
+                                        </div>	
+                                    </li>
                                     <li><a class="color4" href="404.jsp">Giới thiệu</a></li>
                                     <li><a class="color5" href="typo.html">Tin Tức</a></li>
                                     <li ><a class="color6" href="contact.jsp">Liên hệ</a></li>

@@ -123,6 +123,7 @@
                             <a href="#" class="add-to item_add hvr-skew-backward">Thêm vào giỏ hàng</a>
                             <div class="clearfix"> </div>
                         </div>
+                    <div class="fb-comments" data-href="http://localhost:8080/SHOP02/single.jsp?product=<%= product.getProductID()%>" data-numposts="5"></div>
 
                     </div>
                     <div class="clearfix"> </div>
@@ -150,12 +151,12 @@
 
 <script>
 // Can also be used with $(document).ready()
-            $(window).load(function () {
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    controlNav: "thumbnails"
-                });
-            });
+                                $(window).load(function () {
+                                    $('.flexslider').flexslider({
+                                        animation: "slide",
+                                        controlNav: "thumbnails"
+                                    });
+                                });
 </script>
 
 <script src="js/simpleCart.min.js"></script>

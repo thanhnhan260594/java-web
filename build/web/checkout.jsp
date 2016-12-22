@@ -1,15 +1,13 @@
+<%@page import="model.User"%>
+<%@page import="model.Cart"%>
 <%@page import="java.util.Map"%>
 <%@page import="model.Item"%>
-<%@page import="model.Cart"%>
-<%@page import="model.Product"%> 
-<%@page import="dao.ProductDAO"%> 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Giỏ Hàng</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Thanh toán</title>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Custom Theme files -->
         <!--theme-style-->
@@ -48,9 +46,14 @@
                 });
             });
         </script>
-        <!---//End-rate---->
     </head>
     <body>
+        <%
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
+                response.sendRedirect("/SHOP02/login.jsp");
+            }
+        %>
         <%
             Cart cart = (Cart) session.getAttribute("cart");
             if (cart == null) {
@@ -58,88 +61,85 @@
                 session.setAttribute("cart", cart);
             }
         %>
-        <!--header-->
         <jsp:include page="_Header.jsp"></jsp:include>
-            <!--banner-->
+
             <div class="banner-top">
                 <div class="container">
-                    <h1>Giỏ hàng</h1>
+                    <h1>Thanh toán</h1>
                     <em></em>
-                    <h2><a href="index.html">Trang chủ</a><label>/</label>Giỏ hàng</a></h2>
+                    <h2><a href="index.jsp">Trang chủ</a><label>/</label><a>Thanh toán</a></h2>
                 </div>
             </div>
-            <!--login-->
-            <script>$(document).ready(function (c) {
-                    $('.close1').on('click', function (c) {
-                        $('.cart-header').fadeOut('slow', function (c) {
-                            $('.cart-header').remove();
-                        });
-                    });
-                });
-            </script>
-
             <div class="container">
-                <div class="check-out">
-                    <div class="bs-example4" data-example-id="simple-responsive-table">
-                        <div class="table-responsive">
+                <div class="login">
+
+                    <form action="CheckoutServlet" method="POST">
+                        <div class="col-md-7 login-do">
+                            <div class="login-mail">
+                                <input type="text" placeholder="Tên khách hàng" required="">
+                            </div>
+                            <div class="login-mail">
+                                <input type="text" placeholder="Địa chỉ giao hàng" required="">
+                            </div>
+                            <div class="login-mail">
+                                <input type="text" placeholder="Điện thoại di động" required="">
+                            </div>
+
+                            <label class="hvr-skew-backward">
+
+<!--                                <input type="hidden" value="checkout" name="command">-->
+
+                                <input type="submit" value="Thanh toán">
+                            </label>
+                        </div>
+                        <div class="col-md-5 login-right">
                             <table class="table-heading simpleCart_shelfItem">
                                 <tr>
-                                    <th class="table-grid">Sản Phẩm</th>
-                                    <th>Giá</th>
-                                    <th >Số Lượng </th>
-                                    
+                                <h3>Thông tin đơn hàng</h3>
+                                </tr>
+                                <tr>
+                                    <th>Sản Phẩm</th>
+
+                                    <th>Số Lượng x Giá</th>
                                 </tr>
 
                             <%for (Map.Entry<Long, Item> list : cart.getCartItems().entrySet()) {%>
                             <tr class="cart-header">
-                                <td class="ring-in"><a href="#" class="at-in"><img src="images/<%=list.getValue().getProduct().getProductImage()%>" class="img-responsive" alt=""></a>
-                                    <div class="sed">
-                                        <h5><a href="#"><%=list.getValue().getProduct().getProductName()%></a></h5>
-                                        <p><%=list.getValue().getProduct().getProductDescription()%></p>
-                                    </div>
+                                <td class="ring-in">
+
+                                    <%=list.getValue().getProduct().getProductName()%>
+
                                     <div class="clearfix"> </div>
                                 </td>
-                                <td><%=list.getValue().getProduct().getProductPrice()%></td>
-                                <td><%=list.getValue().getQuantity()%></td>
-                                
-                                <td class="add-check"><a class="item_add hvr-skew-backward" href="CartServlet?command=remove&productID=<%=list.getValue().getProduct().getProductID()%>">Xóa</a></td>
+                                <td><%=list.getValue().getQuantity()%> x <%=list.getValue().getProduct().getProductPrice()%></td>
+
                             </tr>
                             <div class="clearfix"></div>
 
                             <%}%>
                             <tr>
-                                <th class="table-grid">Tổng tiền</th>
+                                <th class="table-grid">Thành tiền</th>
 
-                                <th></th>
-                                
+
                                 <th>
-                                <%=cart.total()%>
+                                    <%=cart.total()%>
                                 </th>
                             </tr>
                         </table>
+
                     </div>
-                </div>
-                <div class="produced">
-                    <a href="checkout.jsp" class="hvr-skew-backward">Thanh Toán</a>
-                </div>
+
+                    <div class="clearfix"> </div>
+                </form>
             </div>
-        </div>
-        <!--//login-->
-        <!--brand-->
-        <jsp:include page="_Branch-img.jsp"></jsp:include>
-            <!--//brand-->
+
         </div>
 
-    </div>
-    <!--//content-->
-    <!--//footer-->
-<jsp:include page="_Footer.jsp"></jsp:include>
-<!--//footer-->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-<script src="js/simpleCart.min.js"></script>
-<!-- slide -->
-<script src="js/bootstrap.min.js"></script>
+        <jsp:include page="_Footer.jsp"></jsp:include>
 
-</body>
+        <script src="js/simpleCart.min.js"></script>
+        <!-- slide -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>
