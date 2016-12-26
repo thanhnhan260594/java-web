@@ -61,6 +61,7 @@
         <!--header-->
         <jsp:include page="_Header.jsp"></jsp:include>
             <!--banner-->
+            <br>
         <jsp:include page="_Banner.jsp"></jsp:include>
             <!--content-->
             <div class="content">
@@ -82,6 +83,7 @@
                                         <a href="single.jsp?product=<%=p.getProductID()%>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
                                     </div>
                                 </div>
+                                    
                                 <div class="mid-1">
                                     <div class="women">
                                         <div class="women-top">
@@ -93,14 +95,13 @@
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
+                                        
                                     <div class="mid-2">
                                         <p ><%=p.getProductPrice()%>VNĐ</p>
-                                        
-
                                         <div class="clearfix"></div>
                                     </div>
-
                                 </div>
+                                        
                             </div>
                         </div>
                         <%
