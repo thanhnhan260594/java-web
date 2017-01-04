@@ -22,6 +22,7 @@ import model.Cart;
 import model.Item;
 import model.User;
 import model.Customer;
+import tools.SendMail;
 
 /**
  *
@@ -39,7 +40,7 @@ public class CheckoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         User user = (User) session.getAttribute("user");
@@ -47,7 +48,7 @@ public class CheckoutServlet extends HttpServlet {
             long ID = new Date().getTime();
             Order order = new Order();
             order.setOrderID(ID);
-            order.setCustomerID(user.getUserID());     
+            order.setCustomerID(user.getUserID());
             order.setDate(new Timestamp(new Date().getTime()));
             order.setTotal(cart.total());
             orderDAO.insertOrder(order);
@@ -59,6 +60,9 @@ public class CheckoutServlet extends HttpServlet {
                         list.getValue().getQuantity()
                 ));
             }
+            SendMail sm = new SendMail();
+            SendMail.sendMail(user.getUserEmail(), "Xác nhận đơn hàng", "Xin chào,"+user.getUserEmail()+"\nTotal: "+cart.total());
+            
             cart = new Cart();
             session.setAttribute("cart", cart);
         } catch (Exception e) {
