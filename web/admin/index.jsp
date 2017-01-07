@@ -1,6 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,30 +11,28 @@
 
         <title>Trang quản trị</title>
 
-        <c:set var="root" value="${pageContext.request.contextPath}"/>
-        <link href="${root}/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-        <!-- Theme style -->
-        <link href="${root}/css/AdminLTE.css" rel="stylesheet" type="text/css"/>
-        <!-- Font Awesome -->
+
+
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>      
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css"/>       
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-        <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- Theme style -->
-        <link href="${root}/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
         <!--<script src="${root}/js/jquery-1.11.1.min.js"></script>-->
-        <link rel="stylesheet" href="${root}/css/_all-skins.min.css">              
-        <!-- iCheck -->
-        <link rel="stylesheet" href="${root}/plugins/iCheck/flat/blue.css">
-        <!-- Morris chart -->
-        <link rel="stylesheet" href="${root}/plugins/morris/morris.css">
-        <!-- jvectormap -->
-        <link rel="stylesheet" href="${root}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-        <!-- Date Picker -->
-        <link rel="stylesheet" href="${root}/plugins/datepicker/datepicker3.css">
-        <!-- Daterange picker -->
-        <link rel="stylesheet" href="${root}/plugins/daterangepicker/daterangepicker.css">
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link rel="stylesheet" href="${root}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <link href="css/skins/_all-skins.css" rel="stylesheet" type="text/css"/>
+        <!--        
+                 iCheck 
+                <link rel="stylesheet" href="${root}/plugins/iCheck/flat/blue.css">
+                 Morris chart 
+                <link rel="stylesheet" href="${root}/plugins/morris/morris.css">
+                 jvectormap 
+                <link rel="stylesheet" href="${root}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+                 Date Picker 
+                <link rel="stylesheet" href="${root}/plugins/datepicker/datepicker3.css">
+                 Daterange picker 
+                <link rel="stylesheet" href="${root}/plugins/daterangepicker/daterangepicker.css">
+                 bootstrap wysihtml5 - text editor 
+                <link rel="stylesheet" href="${root}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">-->
     </head>
 
 
@@ -47,41 +45,41 @@
             </div>
         <jsp:include page="_Footer.jsp"></jsp:include>
 
-        <script src="${root}/plugins/jQuery/jquery-2.2.3.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
+<!--            <script src="${root}/plugins/jQuery/jquery-2.2.3.min.js"></script>
+         jQuery UI 1.11.4 
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+         Resolve conflict in jQuery UI tooltip with Bootstrap tooltip 
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
-        <!-- Bootstrap 3.3.6 -->
+         Bootstrap 3.3.6 
         <script src="${root}/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Morris.js charts -->
+         Morris.js charts 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="${root}/plugins/morris/morris.min.js"></script>
-        <!-- Sparkline -->
+         Sparkline 
         <script src="${root}/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <!-- jvectormap -->
+         jvectormap 
         <script src="${root}/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="${root}/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <!-- jQuery Knob Chart -->
+         jQuery Knob Chart 
         <script src="${root}/plugins/knob/jquery.knob.js"></script>
-        <!-- daterangepicker -->
+         daterangepicker 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="${root}/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- datepicker -->
+         datepicker 
         <script src="${root}/plugins/datepicker/bootstrap-datepicker.js"></script>
-        <!-- Bootstrap WYSIHTML5 -->
+         Bootstrap WYSIHTML5 
         <script src="${root}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-        <!-- Slimscroll -->
+         Slimscroll 
         <script src="${root}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-        <!-- FastClick -->
+         FastClick 
         <script src="${root}/plugins/fastclick/fastclick.js"></script>
-        <!-- AdminLTE App -->
+         AdminLTE App 
         <script src="${root}/js/app.min.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+         AdminLTE dashboard demo (This is only for demo purposes) 
         <script src="${root}/js/pages/dashboard.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="${root}/js/demo.js"></script>
+         AdminLTE for demo purposes 
+        <script src="${root}/js/demo.js"></script>-->
     </body>
 </html>
