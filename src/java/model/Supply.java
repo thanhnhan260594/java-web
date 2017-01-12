@@ -20,6 +20,10 @@ public class Supply {
         this.supplySlug = supplySlug;
     }
 
+    public Supply(int i, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public long getSupplyID() {
         return supplyID;
     }
