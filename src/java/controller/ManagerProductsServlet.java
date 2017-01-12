@@ -7,6 +7,7 @@ package controller;
 
 import dao.ProductDAO;
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,7 @@ ProductDAO productDAO = new ProductDAO();
             switch (command) {
                 case "delete":
                     productDAO.deleteProduct(Long.parseLong(sup_id));
-                    url = "/admin/manager_supplies/index.jsp";
+                    url = "/admin/manager_products/index.jsp";
                     break;
             }
         } catch (Exception e) {
@@ -48,11 +49,14 @@ ProductDAO productDAO = new ProductDAO();
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String command = request.getParameter("command");
-        String nameSupplies = request.getParameter("nameSupplies");
+        String nameProduct = request.getParameter("nameProduct");
+       // double priceProduct = request.get(double priceProduct)
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
         String url = "", error = "";
-        if (nameSupplies.equals("")) {
+        java.util.Date a = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(a.getTime());
+        if (nameProduct.equals("")) {
             error = "Vui lòng nhập tên danh mục!";
             request.setAttribute("error", error);
         }
@@ -60,16 +64,16 @@ ProductDAO productDAO = new ProductDAO();
             if (error.length() == 0) {
                 switch (command) {
                     case "insert":
-                        productDAO.insertProduct(new Product(new Date().getTime() % 10000, nameSupplies, address, phone, ""));
-                        url = "/admin/manager_supplies/index.jsp";
+                        productDAO.insertProduct(new Product(a.getTime() % 1000, nameProduct, address, phone, ""));
+                        url = "/admin/manager_products/index.jsp";
                         break;
                     case "update":
-                        productDAO.updateProduct(new Product(Long.parseLong(request.getParameter("id_sup")), nameSupplies, address, phone, ""));
-                        url = "/admin/manager_supplies/index.jsp";
+                        productDAO.updateProduct(new Product(Long.parseLong(request.getParameter("id_sup")), nameProduct, address, phone, ""));
+                        url = "/admin/manager_products/index.jsp";
                         break;
                 }
             } else {
-                url = "/admin/manager_supplies/insert.jsp";
+                url = "/admin/manager_products/insert.jsp";
             }
         } catch (Exception e) {
         }

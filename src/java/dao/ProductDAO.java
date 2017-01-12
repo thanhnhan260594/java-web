@@ -84,7 +84,7 @@ public class ProductDAO {
             product.setProductImage(rs.getString("image"));
             product.setProductPrice(rs.getDouble("price"));
             product.setProductDescription(rs.getString("description"));
-            product.setProductDate(rs.getString("date_update"));
+            product.setProductDate(rs.getDate("date_update"));
             product.setCategoryID(rs.getLong("id_cate"));
             product.setProductID(rs.getLong("id_sup"));
             product.setProductSlug(rs.getString("slug_product"));
@@ -111,7 +111,9 @@ public class ProductDAO {
 
     public boolean insertProduct(Product s) {
         Connection connection = DBConnect.getConnecttion();
-        String sql = "INSERT INTO products VALUE (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO products "
+                + "(id_product,name_product,price,slug_product,image,description,id_sup,id_cate,date_update) VALUES "
+                + "(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setLong(1, s.getProductID());
@@ -122,7 +124,7 @@ public class ProductDAO {
             ps.setString(6, s.getProductDescription());
             ps.setLong(7, s.getSupplyID());
             ps.setLong(8, s.getCategoryID());
-            ps.setString(9, s.getProductDate());
+            ps.setDate(9, s.getProductDate());
             return ps.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,7 +134,9 @@ public class ProductDAO {
 
     public boolean updateProduct(Product s) {
         Connection connection = DBConnect.getConnecttion();
-        String sql = "UPDATE products SET name_product = ?, price = ?, image = ?, description = ?, id_sup = ?, id_cate= ?, date_update= ? WHERE id_product = ?";
+        String sql = "UPDATE products "
+                + "SET name_product = ?, price = ?, image = ?, description = ?, id_sup = ?, id_cate= ?, date_update= ? "
+                + "WHERE id_product = ?";
         try {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, s.getProductName());
@@ -141,8 +145,8 @@ public class ProductDAO {
             ps.setString(4, s.getProductDescription());
             ps.setLong(5, s.getSupplyID());
             ps.setLong(6, s.getCategoryID());
-
-            ps.setLong(7, s.getProductID());
+            ps.setDate(7, s.getProductDate());
+            ps.setLong(8, s.getProductID());
             return ps.executeUpdate() == 1;
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,12 +154,12 @@ public class ProductDAO {
         return false;
     }
 
-    public boolean deleteProduct(long id_sup) {
+    public boolean deleteProduct(long productID) {
         Connection connection = DBConnect.getConnecttion();
-        String sql = "DELETE FROM supplies WHERE id_sup = ?";
+        String sql = "DELETE FROM products WHERE id_product = ?";
         try {
             PreparedStatement ps = connection.prepareCall(sql);
-            ps.setLong(1, id_sup);
+            ps.setLong(1, productID);
             return ps.executeUpdate() == 1;
 
         } catch (Exception ex) {
@@ -166,11 +170,14 @@ public class ProductDAO {
 
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
+        java.util.Date a = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(a.getTime());
 //        for (Product ds : dao.getListNewProduct()) {
 //            System.out.println(ds.getProductImage() + " - ");
 //        }
 //        System.out.println(dao.countProductByCategory(1));
-
-        System.out.println(dao.insertProduct(new Product(100, "TEST", 2000.000, "test", "somi01.jpg", "test", 1, 2, "2016-03-10")));
+//        System.out.println(dao.insertProduct(new Product(a.getTime()%100, "TEST2", 20000.0, "test-2", "somi02.jpg", "áo test 2", 2, 2, sqlDate )));
+//        System.out.println(dao.updateProduct(new Product(64, "TEST", 300000.0, "test", "somi01.jpg", "áo test 1", 1, 1, sqlDate)));
+        System.out.println(dao.deleteProduct(90));
     }
 }

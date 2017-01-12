@@ -1,5 +1,8 @@
 package model;
 
+//import java.util.Date;
+import java.sql.Date;
+
 public class Product {
 
     private long productID;
@@ -10,11 +13,12 @@ public class Product {
     private String productDescription;
     private long supplyID;
     private long categoryID;
-    private String productDate;
+    private Date productDate;
+
     public Product() {
     }
 
-    public Product(long productID, String productName, Double productPrice, String productSlug, String productImage, String productDescription, long supplyID, long categoryID, String productDate) {
+    public Product(long productID, String productName, Double productPrice, String productSlug, String productImage, String productDescription, long supplyID, long categoryID, Date productDate) {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -26,7 +30,10 @@ public class Product {
         this.productDate = productDate;
     }
 
-    
+    public Product(long l, String nameSupplies, String address, String phone, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public long getProductID() {
         return productID;
     }
@@ -91,13 +98,12 @@ public class Product {
         this.categoryID = categoryID;
     }
 
-    public String getProductDate() {
+    public Date getProductDate() {
         return productDate;
     }
 
-    public void setProductDate(String productDate) {
+    public void setProductDate(Date productDate) {
         this.productDate = productDate;
     }
 
-   
 }
