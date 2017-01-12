@@ -20,20 +20,34 @@ import model.Supply;
  * @author thanh_000
  */
 public class ManagerSuppliesServlet extends HttpServlet {
-    
+
     SupplyDAO supplyDAO = new SupplyDAO();
-    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        String command = request.getParameter("command");
+        String sup_id = request.getParameter("id_sup");
+        String url = "";
+        try {
+            switch (command) {
+                case "delete":
+                    supplyDAO.deleteSupply(Long.parseLong(sup_id));
+                    url = "/admin/manager_supplies/index.jsp";
+                    break;
+            }
+        } catch (Exception e) {
+        }
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+        rd.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String command = request.getParameter("command");
         String nameSupplies = request.getParameter("nameSupplies");
@@ -48,13 +62,13 @@ public class ManagerSuppliesServlet extends HttpServlet {
             if (error.length() == 0) {
                 switch (command) {
                     case "insert":
-                        supplyDAO.insertSupply(new Supply(new Date().getTime()%1000, nameSupplies, address, phone, ""));
+                        supplyDAO.insertSupply(new Supply(new Date().getTime() % 10000, nameSupplies, address, phone, ""));
                         url = "/admin/manager_supplies/index.jsp";
                         break;
-//                    case "update":
-//                        supplyDAO.update(new Supply(Long.parseLong(request.getParameter("category_id")),nameSupplies));
-//                        url = "/Admin/manager_category.jsp";
-//                        break;
+                    case "update":
+                        supplyDAO.updateSupply(new Supply(Long.parseLong(request.getParameter("id_sup")), nameSupplies, address, phone, ""));
+                        url = "/admin/manager_supplies/index.jsp";
+                        break;
                 }
             } else {
                 url = "/admin/manager_supplies/insert.jsp";
@@ -63,8 +77,7 @@ public class ManagerSuppliesServlet extends HttpServlet {
         }
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
         rd.forward(request, response);
-    
-    }
 
+    }
 
 }
