@@ -20,6 +20,10 @@
         <servlet-name>ManagerSuppliesServlet</servlet-name>
         <servlet-class>controller.ManagerSuppliesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerProductsServlet</servlet-name>
+        <servlet-class>controller.ManagerProductsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CheckEmailServlet</servlet-name>
         <url-pattern>/CheckEmailServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ManagerSuppliesServlet</servlet-name>
         <url-pattern>/ManagerSuppliesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerProductsServlet</servlet-name>
+        <url-pattern>/ManagerProductsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

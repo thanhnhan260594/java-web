@@ -105,7 +105,7 @@
                                                     <h3>Want to work with me?</h3>
                                                     <form>
                                                         <div>
-                                                            <span>Your Name </span>		
+                                                            <span>Họ và Tên</span>		
                                                             <input type="text" value="" >						
                                                         </div>
                                                         <div>

@@ -10,11 +10,11 @@ public class Product {
     private String productDescription;
     private long supplyID;
     private long categoryID;
-
+    private String productDate;
     public Product() {
     }
 
-    public Product(long productID, String productName, Double productPrice, String productSlug, String productImage, String productDescription, long supplyID, long categoryID) {
+    public Product(long productID, String productName, Double productPrice, String productSlug, String productImage, String productDescription, long supplyID, long categoryID, String productDate) {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -23,8 +23,10 @@ public class Product {
         this.productDescription = productDescription;
         this.supplyID = supplyID;
         this.categoryID = categoryID;
+        this.productDate = productDate;
     }
 
+    
     public long getProductID() {
         return productID;
     }
@@ -87,6 +89,14 @@ public class Product {
 
     public void setCategoryID(long categoryID) {
         this.categoryID = categoryID;
+    }
+
+    public String getProductDate() {
+        return productDate;
+    }
+
+    public void setProductDate(String productDate) {
+        this.productDate = productDate;
     }
 
    
